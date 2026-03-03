@@ -34,7 +34,7 @@ const releaseDate = r.releaseDate.toLocaleDateString("de-DE", {
       <p class="release-description">{r.description}</p>
 
       <div class="action-row">
-        <AudioPlayer audioSrc={r.audio} title={r.title} />
+        <AudioPlayer audioSrc={r.audio} title={r.title} disabled={linksDisabled} />
       </div>
 
       <div class="listen-block" aria-label="Streaming-Plattformen">

@@ -2,27 +2,29 @@
 interface Props {
   audioSrc?: string;
   title: string;
+  disabled?: boolean;
 }
 
-const { audioSrc, title } = Astro.props;
+const { audioSrc, title, disabled = false } = Astro.props;
 const resolvedAudioSrc = audioSrc?.trim() ? audioSrc : "";
-const hasAudio = resolvedAudioSrc.length > 0;
+const playableAudioSrc = disabled ? "" : resolvedAudioSrc;
+const isEnabled = playableAudioSrc.length > 0;
 ---
 
-<div class="audio-player" data-audio-player data-audio-src={resolvedAudioSrc} data-track-title={title}>
+<div class="audio-player" data-audio-player data-audio-src={playableAudioSrc} data-track-title={title}>
   <button
     class="audio-player__toggle"
     type="button"
     aria-label={`Track abspielen: ${title}`}
-    disabled={!hasAudio}
-    aria-disabled={!hasAudio}
+    disabled={!isEnabled}
+    aria-disabled={!isEnabled}
   >
     <span class="audio-player__icon audio-player__icon--play" aria-hidden="true"></span>
     <span class="audio-player__icon audio-player__icon--pause" aria-hidden="true"></span>
     <span class="sr-only">Wiedergabe umschalten</span>
   </button>
 
-  <div class="audio-player__meta" hidden={!hasAudio}>
+  <div class="audio-player__meta" hidden={!isEnabled}>
     <div class="audio-player__bar" role="progressbar" aria-label="Song-Fortschritt" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
       <div class="audio-player__bar-fill" data-audio-progress></div>
     </div>
