@@ -28,11 +28,16 @@ const shows = defineCollection({
 });
 
 const resources = defineCollection({
-  type: "content",
+  type: "data",
   schema: z.object({
-    title: z.string(),
-    file: z.string(),
-    type: z.enum(["zip", "pdf"])
+    resources: z.array(
+      z.object({
+        title: z.string(),
+        file: z.string(),
+        type: z.enum(["zip", "pdf"]),
+        status: z.enum(["active", "draft"])
+      })
+    )
   })
 });
 

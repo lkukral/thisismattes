@@ -86,9 +86,9 @@ textarea {
 }
 
 .top-banner {
-  aspect-ratio: 7 / 3;
+  aspect-ratio: 1 / 1;
   background-image: url("/assets/images/mattes_top_banner_image.jpg");
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   border-bottom: var(--line-strong);
@@ -99,18 +99,20 @@ textarea {
 
 .top-banner h1 {
   color: var(--color-white);
-  font-size: clamp(2.8rem, 8vw, 5rem);
+  font-size: clamp(2.1rem, 11vw, 5rem);
   font-weight: 700;
   letter-spacing: 0.03em;
   line-height: 1.05;
+  overflow-wrap: anywhere;
   text-align: center;
 }
 
 .top-banner__tagline {
   color: var(--color-white);
-  font-size: clamp(1rem, 2vw, 1.4rem);
+  font-size: clamp(0.9rem, 4vw, 1.4rem);
   margin-top: var(--space-3);
   max-width: 46ch;
+  overflow-wrap: anywhere;
   text-align: center;
 }
 
@@ -180,10 +182,16 @@ h2 {
 .hero__content {
   display: grid;
   gap: var(--space-5);
+  min-width: 0;
 }
 
 .artwork {
   border: var(--line);
+}
+
+.hero .artwork {
+  max-width: none;
+  width: 100%;
 }
 
 .artwork img {
@@ -200,6 +208,7 @@ h2 {
 .hero__meta {
   display: grid;
   gap: var(--space-4);
+  min-width: 0;
 }
 
 .meta-row {
@@ -219,12 +228,14 @@ h2 {
 }
 
 .release-title {
-  font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+  font-size: clamp(1.3rem, 6.4vw, 2.2rem);
   line-height: 1.1;
+  overflow-wrap: anywhere;
 }
 
 .release-description {
   max-width: 60ch;
+  overflow-wrap: anywhere;
 }
 
 .action-row,
@@ -245,6 +256,7 @@ h2 {
 
 .listen-block__label {
   font-weight: 600;
+  overflow-wrap: anywhere;
   text-transform: uppercase;
 }
 
@@ -337,7 +349,7 @@ h2 {
   display: grid;
   flex: 1;
   gap: var(--space-2);
-  min-width: 180px;
+  min-width: 0;
 }
 
 .audio-player__bar {
@@ -364,6 +376,7 @@ h2 {
 
 .artist-info dl {
   border: var(--line);
+  width: 100%;
 }
 
 .info-row {
@@ -385,6 +398,8 @@ h2 {
 
 .info-row dd {
   margin: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .release-list {
@@ -415,8 +430,16 @@ h2 {
 }
 
 .bio__subline {
+  font-size: 0.95rem;
   font-weight: 600;
+  line-height: 1.35;
   text-transform: uppercase;
+}
+
+.bio p {
+  font-size: 0.96rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 .table-wrapper {
@@ -432,9 +455,11 @@ table {
 th,
 td {
   border-bottom: var(--line);
+  overflow-wrap: anywhere;
   padding: var(--space-3);
   text-align: left;
   vertical-align: middle;
+  word-break: break-word;
 }
 
 th {
@@ -463,8 +488,10 @@ th {
 
 .resource-item__label {
   align-items: center;
-  display: inline-flex;
+  display: flex;
   gap: var(--space-3);
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .resource-item svg {
@@ -493,6 +520,15 @@ th {
   border: var(--line);
   display: inline-flex;
   padding: var(--space-1) var(--space-3);
+}
+
+.layout,
+.layout__content,
+.hero,
+.hero__content,
+.hero__meta,
+.artist-info {
+  min-width: 0;
 }
 
 .legal-content {
@@ -525,6 +561,64 @@ th {
   width: 1px;
 }
 
+@media (max-width: 639px) {
+  .site-container {
+    width: min(1200px, calc(100vw - 1rem));
+  }
+
+  .top-banner__overlay {
+    padding: var(--space-4);
+  }
+
+  .layout {
+    gap: var(--space-6);
+    padding: var(--space-6) 0;
+  }
+
+  .layout__content {
+    gap: var(--space-6);
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .button {
+    min-width: 6.25rem;
+    padding: var(--space-2) var(--space-3);
+  }
+
+  .resource-item {
+    align-items: start;
+    gap: var(--space-3);
+    grid-template-columns: 1fr;
+  }
+
+  table {
+    min-width: 0;
+  }
+
+  th,
+  td {
+    font-size: 0.86rem;
+    padding: var(--space-2);
+  }
+
+  .button--ticket {
+    min-width: auto;
+    padding: var(--space-2);
+  }
+
+  .audio-player {
+    gap: var(--space-3);
+  }
+
+  .audio-player__meta {
+    min-width: 0;
+  }
+}
+
 @media (min-width: 640px) {
   .release-card {
     align-items: start;
@@ -534,6 +628,10 @@ th {
 }
 
 @media (min-width: 960px) {
+  .top-banner {
+    aspect-ratio: 7 / 3;
+  }
+
   .layout {
     column-gap: var(--space-6);
     grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);

@@ -34,7 +34,10 @@ const pastShows = allShows
   .filter((show) => show.data.date.getTime() < todayStart.getTime())
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-const resources = await getCollection("resources");
+const [resourcesEntry] = await getCollection("resources");
+const resources = (resourcesEntry?.data.resources ?? []).filter(
+  (resource) => resource.status === "active"
+);
 
 const bioParagraphs = [
   "MATTES steht für Songs mit klarer Sprache, emotionaler Tiefe und einer modernen Pop-Produktion, die Nähe statt Distanz erzeugt.",
@@ -63,7 +66,7 @@ const bioParagraphs = [
 
       <LiveShows upcomingShows={upcomingShows} pastShows={pastShows} />
 
-      <ResourcesSection resources={resources} />
+      {resources.length > 0 && <ResourcesSection resources={resources} />}
     </div>
 
     <ArtistSidebar

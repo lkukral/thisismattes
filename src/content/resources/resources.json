@@ -1,0 +1,40 @@
+{
+  "resources": [
+    {
+      "title": "Artist-Bilder (ZIP)",
+      "file": "/assets/downloads/mattes_artist_images.zip",
+      "type": "zip",
+      "status": "active"
+    },
+    {
+      "title": "Release-Artworks (ZIP)",
+      "file": "/assets/downloads/artwork_zaertlicher_applaus.zip",
+      "type": "zip",
+      "status": "active"
+    },
+    {
+      "title": "Artist Pressetext (lang, PDF)",
+      "file": "/assets/downloads/#",
+      "type": "pdf",
+      "status": "draft"
+    },
+    {
+      "title": "Artist Pressetext (kurz, PDF)",
+      "file": "/assets/downloads/#",
+      "type": "pdf",
+      "status": "draft"
+    },
+    {
+      "title": "Release \"Zärtlicher Applaus\" Pressetext (PDF)",
+      "file": "/assets/downloads/#",
+      "type": "pdf",
+      "status": "draft"
+    },
+    {
+      "title": "Technical Rider (PDF)",
+      "file": "/assets/downloads/#",
+      "type": "pdf",
+      "status": "draft"
+    }
+  ]
+}
