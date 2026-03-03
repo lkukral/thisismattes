@@ -1,0 +1,31 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  resources: CollectionEntry<"resources">[];
+}
+
+const { resources } = Astro.props;
+---
+
+<section class="resources" aria-labelledby="resources-heading">
+  <h2 id="resources-heading">Ressourcen</h2>
+  <ul class="resource-list">
+    {
+      resources.map((resource) => (
+        <li class="resource-item">
+          <span class="resource-item__label">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M6 2h9l5 5v15H6z"></path>
+              <path d="M15 2v5h5"></path>
+            </svg>
+            {resource.data.title}
+          </span>
+          <a class="button" href={resource.data.file} download>
+            Download
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>

@@ -1,0 +1,20 @@
+---
+interface Props {
+  artwork?: string;
+  artworkAlt: string;
+}
+
+const { artwork, artworkAlt } = Astro.props;
+const imageSrc = artwork?.trim() ? artwork : "/assets/images/artwork-fallback.svg";
+---
+
+<figure class="artwork artwork--square">
+  <img
+    src={imageSrc}
+    alt={artworkAlt}
+    loading="lazy"
+    decoding="async"
+    width="1200"
+    height="1200"
+  />
+</figure>

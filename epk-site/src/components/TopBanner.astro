@@ -1,0 +1,15 @@
+---
+interface Props {
+  artistName: string;
+  tagline: string;
+}
+
+const { artistName, tagline } = Astro.props;
+---
+
+<header class="top-banner site-container" aria-label="Presskit Kopfbereich">
+  <div class="top-banner__overlay">
+    <h1>{artistName}</h1>
+    <p class="top-banner__tagline">{tagline}</p>
+  </div>
+</header>

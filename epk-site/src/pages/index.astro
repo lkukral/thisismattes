@@ -1,0 +1,81 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TopBanner from "../components/TopBanner.astro";
+import SocialLinksSection from "../components/SocialLinksSection.astro";
+import HeroRelease from "../components/HeroRelease.astro";
+import ArtistSidebar from "../components/ArtistSidebar.astro";
+import PreviousReleases from "../components/PreviousReleases.astro";
+import BioSection from "../components/BioSection.astro";
+import LiveShows from "../components/LiveShows.astro";
+import ResourcesSection from "../components/ResourcesSection.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+
+const releases = (await getCollection("releases")).sort(
+  (a, b) => b.data.releaseDate.getTime() - a.data.releaseDate.getTime()
+);
+
+if (releases.length === 0) {
+  throw new Error("Mindestens ein Release in src/content/releases erforderlich.");
+}
+
+const currentRelease = releases[0];
+const previousReleases = releases.slice(1, 4);
+
+const allShows = await getCollection("shows");
+const todayStart = new Date();
+todayStart.setHours(0, 0, 0, 0);
+
+const upcomingShows = allShows
+  .filter((show) => show.data.date.getTime() >= todayStart.getTime())
+  .sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
+
+const pastShows = allShows
+  .filter((show) => show.data.date.getTime() < todayStart.getTime())
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const resources = await getCollection("resources");
+
+const bioParagraphs = [
+  "MATTES steht für Songs mit klarer Sprache, emotionaler Tiefe und einer modernen Pop-Produktion, die Nähe statt Distanz erzeugt.",
+  "Zwischen introspektiven Texten und präzisen Hooks entsteht ein Sound, der im Club genauso funktioniert wie auf intimen Bühnen. Dabei verbindet MATTES organische Instrumente mit reduzierten elektronischen Elementen.",
+  "Mit dem aktuellen Release schärft MATTES die eigene Handschrift weiter und liefert Material, das für Redaktion, Booking und kuratierte Playlists gleichermaßen anschlussfähig ist."
+];
+---
+
+<BaseLayout title="MATTES | Elektronisches Press Kit" description="Offizielles EPK von MATTES mit aktuellem Release, Bio, Live-Terminen und Presse-Downloads.">
+  <TopBanner
+    artistName="MATTES"
+    tagline="Zweifel gehören dazu - Herz, Mut und Zuversicht bringen dich voran"
+  />
+  <SocialLinksSection
+    instagramUrl="https://www.instagram.com/thisismattes_/"
+    tiktokUrl="https://www.tiktok.com/@thisismattes"
+  />
+
+  <main id="main-content" class="site-container layout">
+    <div class="layout__content">
+      <HeroRelease release={currentRelease} />
+
+      {previousReleases.length > 0 && <PreviousReleases releases={previousReleases} />}
+
+      <BioSection subline="Ehrliche Songs, klare Kante, moderne Produktion." paragraphs={bioParagraphs} />
+
+      <LiveShows upcomingShows={upcomingShows} pastShows={pastShows} />
+
+      <ResourcesSection resources={resources} />
+    </div>
+
+    <ArtistSidebar
+      origin="Bayern, Deutschland"
+      genre="Pop / Indie-Pop"
+      tagline="Zwischen Verletzlichkeit und Aufbruch"
+      contactName="Stefan Mattes"
+      contactMail="hello@thisismattes.de"
+      contactPhone="+49 160 6663012"
+      contactWeb="thisismattes.de"
+    />
+  </main>
+
+  <SiteFooter artistName="MATTES" />
+</BaseLayout>

@@ -1,0 +1,73 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Artwork from "./Artwork.astro";
+import AudioPlayer from "./AudioPlayer.astro";
+
+interface Props {
+  release: CollectionEntry<"releases">;
+}
+
+const { release } = Astro.props;
+const r = release.data;
+const todayStart = new Date();
+todayStart.setHours(0, 0, 0, 0);
+const linksDisabled = r.releaseDate.getTime() > todayStart.getTime();
+const releaseDate = r.releaseDate.toLocaleDateString("de-DE", {
+  day: "2-digit",
+  month: "long",
+  year: "numeric"
+});
+---
+
+<section class="hero" aria-labelledby="aktueller-release-heading">
+  <h2 id="aktueller-release-heading">Aktueller Release</h2>
+
+  <div class="hero__content">
+    <Artwork artwork={r.artwork} artworkAlt={r.artworkAlt} />
+
+    <div class="hero__meta">
+      <p class="meta-row">
+        <span class="meta-label">Release-Datum</span>
+        <time datetime={r.releaseDate.toISOString()}>{releaseDate}</time>
+      </p>
+      <h3 class="release-title">{r.title}</h3>
+      <p class="release-description">{r.description}</p>
+
+      <div class="action-row">
+        <AudioPlayer audioSrc={r.audio} title={r.title} />
+      </div>
+
+      <div class="listen-block" aria-label="Streaming-Plattformen">
+        <p class="listen-block__label">
+          {linksDisabled ? `Ab dem ${releaseDate} anhören auf` : "Jetzt anhören auf"}
+        </p>
+        <div class="button-group">
+          {r.spotifyUrl &&
+            (linksDisabled ? (
+              <span class="button button--disabled" aria-disabled="true">Spotify</span>
+            ) : (
+              <a class="button" href={r.spotifyUrl} target="_blank" rel="noreferrer noopener">Spotify</a>
+            ))}
+          {r.appleMusicUrl &&
+            (linksDisabled ? (
+              <span class="button button--disabled" aria-disabled="true">Apple Music</span>
+            ) : (
+              <a class="button" href={r.appleMusicUrl} target="_blank" rel="noreferrer noopener">Apple Music</a>
+            ))}
+          {r.amazonMusicUrl &&
+            (linksDisabled ? (
+              <span class="button button--disabled" aria-disabled="true">Amazon Music</span>
+            ) : (
+              <a class="button" href={r.amazonMusicUrl} target="_blank" rel="noreferrer noopener">Amazon Music</a>
+            ))}
+          {r.youtubeMusicUrl &&
+            (linksDisabled ? (
+              <span class="button button--disabled" aria-disabled="true">YouTube Music</span>
+            ) : (
+              <a class="button" href={r.youtubeMusicUrl} target="_blank" rel="noreferrer noopener">YouTube Music</a>
+            ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

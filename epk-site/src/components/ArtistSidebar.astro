@@ -1,0 +1,55 @@
+---
+interface Props {
+  origin: string;
+  genre: string;
+  tagline: string;
+  contactName: string;
+  contactMail: string;
+  contactPhone: string;
+  contactWeb: string;
+}
+
+const {
+  origin,
+  genre,
+  tagline,
+  contactName,
+  contactMail,
+  contactPhone,
+  contactWeb
+} = Astro.props;
+---
+
+<aside class="artist-info" aria-labelledby="artist-info-heading">
+  <h2 id="artist-info-heading">Künstlerinfo</h2>
+  <dl>
+    <div class="info-row">
+      <dt>Herkunft</dt>
+      <dd>{origin}</dd>
+    </div>
+    <div class="info-row">
+      <dt>Genre</dt>
+      <dd>{genre}</dd>
+    </div>
+    <div class="info-row">
+      <dt>Tagline</dt>
+      <dd>{tagline}</dd>
+    </div>
+    <div class="info-row">
+      <dt>Kontakt</dt>
+      <dd>{contactName}</dd>
+    </div>
+    <div class="info-row">
+      <dt>E-Mail</dt>
+      <dd><a href={`mailto:${contactMail}`}>{contactMail}</a></dd>
+    </div>
+    <div class="info-row">
+      <dt>Telefon</dt>
+      <dd><a href={`tel:${contactPhone.replace(/\s+/g, "")}`}>{contactPhone}</a></dd>
+    </div>
+    <div class="info-row">
+      <dt>Web</dt>
+      <dd><a href={contactWeb} target="_blank" rel="noreferrer noopener">{contactWeb}</a></dd>
+    </div>
+  </dl>
+</aside>

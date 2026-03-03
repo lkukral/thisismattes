@@ -1,0 +1,61 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  upcomingShows: CollectionEntry<"shows">[];
+  pastShows: CollectionEntry<"shows">[];
+}
+
+const { upcomingShows, pastShows } = Astro.props;
+const orderedShows = [...upcomingShows, ...pastShows];
+---
+
+<section class="live-shows" aria-labelledby="live-shows-heading">
+  <h2 id="live-shows-heading">Live-Termine</h2>
+  <div class="table-wrapper" role="region" aria-label="Konzerttermine" tabindex="0">
+    <table>
+      <caption class="sr-only">Kommende und vergangene Auftritte</caption>
+      <thead>
+        <tr>
+          <th scope="col">Datum</th>
+          <th scope="col">Stadt</th>
+          <th scope="col">Location</th>
+          <th scope="col">Hinweise</th>
+          <th scope="col">Tickets</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          orderedShows.map((show) => {
+            const isPast = pastShows.some((pastShow) => pastShow.id === show.id);
+            const formattedDate = show.data.date.toLocaleDateString("de-DE", {
+              day: "2-digit",
+              month: "2-digit",
+              year: "numeric"
+            });
+
+            return (
+              <tr class:list={["show-row", isPast && "show-row--past"]}>
+                <td>
+                  <time datetime={show.data.date.toISOString()}>{formattedDate}</time>
+                </td>
+                <td>{show.data.city}</td>
+                <td>{show.data.venue}</td>
+                <td>{show.data.notes ?? "-"}</td>
+                <td>
+                  {show.data.ticketUrl && !isPast ? (
+                    <a class="button button--ticket" href={show.data.ticketUrl} target="_blank" rel="noreferrer noopener">
+                      Tickets
+                    </a>
+                  ) : (
+                    "-"
+                  )}
+                </td>
+              </tr>
+            );
+          })
+        }
+      </tbody>
+    </table>
+  </div>
+</section>

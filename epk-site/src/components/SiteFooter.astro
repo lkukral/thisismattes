@@ -1,0 +1,17 @@
+---
+interface Props {
+  year?: number;
+  artistName: string;
+}
+
+const { year = new Date().getFullYear(), artistName } = Astro.props;
+---
+
+<footer class="site-footer site-container">
+  <div class="site-footer__inner">
+    <p>&copy; {year} {artistName}. Alle Rechte vorbehalten.</p>
+    <nav aria-label="Rechtliche Seiten">
+      <a href="/impressum">Impressum</a>
+    </nav>
+  </div>
+</footer>

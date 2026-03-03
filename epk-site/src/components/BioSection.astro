@@ -1,0 +1,14 @@
+---
+interface Props {
+  subline: string;
+  paragraphs: string[];
+}
+
+const { subline, paragraphs } = Astro.props;
+---
+
+<section class="bio" aria-labelledby="bio-heading">
+  <h2 id="bio-heading">Kurzbiografie</h2>
+  <p class="bio__subline">{subline}</p>
+  {paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+</section>

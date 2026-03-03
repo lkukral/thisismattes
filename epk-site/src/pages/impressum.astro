@@ -1,0 +1,80 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TopBanner from "../components/TopBanner.astro";
+import SocialLinksSection from "../components/SocialLinksSection.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+---
+
+<BaseLayout title="Impressum | MATTES" description="Impressum mit den gesetzlich vorgesehenen Anbieterangaben.">
+  <TopBanner artistName="Impressum" tagline="Gesetzlich erforderliche Anbieterkennzeichnung" />
+  <SocialLinksSection
+    instagramUrl="https://instagram.com/placeholder"
+    tiktokUrl="https://tiktok.com/@placeholder"
+  />
+
+  <main id="main-content" class="site-container legal-content">
+    <p>
+      <a class="button" href="/">Zur Startseite</a>
+    </p>
+
+    <section class="legal-section" aria-labelledby="anbieterkennung-heading">
+      <h2 id="anbieterkennung-heading">Angaben gemäss Paragraph 5 TMG</h2>
+      <p>
+        Stefan Mattes<br />
+        Am Kornberg 27<br />
+        85123 Karlskron<br />
+        Deutschland
+      </p>
+    </section>
+
+    <section class="legal-section" aria-labelledby="vertretung-heading">
+      <h2 id="vertretung-heading">Vertreten durch</h2>
+      <p>Stefan Mattes</p>
+    </section>
+
+    <section class="legal-section" aria-labelledby="kontakt-heading">
+      <h2 id="kontakt-heading">Kontakt</h2>
+      <p>
+        Telefon: +49 160 6663012<br />
+        E-Mail: <a href="mailto:hello@thisismattes.de">hello@thisismattes.de</a>
+      </p>
+    </section>
+
+    <section class="legal-section" aria-labelledby="inhaltlich-verantwortlich-heading">
+      <h2 id="inhaltlich-verantwortlich-heading">Inhaltlich verantwortlich gemäß Paragraph 18 Absatz 2 MStV</h2>
+      <p>
+        Stefan Mattes<br />
+        Am Kornberg 27<br />
+        85123 Karlskron
+      </p>
+    </section>
+
+    <section class="legal-section" aria-labelledby="haftung-inhalte-heading">
+      <h2 id="haftung-inhalte-heading">Haftung für Inhalte</h2>
+      <p>
+        Als Diensteanbieter sind wir gemäss den allgemeinen Gesetzen für eigene Inhalte auf diesen Seiten
+        verantwortlich. Wir sind jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu
+        überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
+      </p>
+    </section>
+
+    <section class="legal-section" aria-labelledby="haftung-links-heading">
+      <h2 id="haftung-links-heading">Haftung für Links</h2>
+      <p>
+        Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben.
+        Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen.
+      </p>
+    </section>
+
+    <section class="legal-section" aria-labelledby="urheberrecht-heading">
+      <h2 id="urheberrecht-heading">Urheberrecht</h2>
+      <p>
+        Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen
+        Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung ausserhalb der
+        Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
+      </p>
+    </section>
+  </main>
+
+  <SiteFooter artistName="MATTES" />
+</BaseLayout>
