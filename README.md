@@ -5,6 +5,7 @@ Produktionsreifes, statisches Electronic Press Kit (EPK) für Musiker:innen auf 
 ## Features
 
 - Deutsche, semantische EPK-Seite (Header, Hero, Sidebar, Releases, Bio, Shows, Ressourcen)
+- Zusätzliche Seite `Impressum` mit eigener Route (`/impressum`)
 - Schwarz/Weiß Design mit editorial Look über Linien, Borders und Spacing
 - Responsive Layout (mobile-first) inkl. Sidebar-Verhalten
 - Audio-Player mit Play/Pause, Fortschrittsbalken, aktueller Zeit und Gesamtdauer
@@ -13,18 +14,20 @@ Produktionsreifes, statisches Electronic Press Kit (EPK) für Musiker:innen auf 
   - Live Shows
   - Ressourcen
 - Logikregeln:
-  - Neuester Release wird als "Aktueller Release" im Hero angezeigt
-  - Bereich "Frühere Releases" zeigt max. 3 Einträge und nur, wenn mehr als 1 Release existiert
+  - Neuester Release wird als „Aktueller Release" im Hero angezeigt
+  - Bereich „Frühere Releases" zeigt max. 3 Einträge und nur, wenn mehr als 1 Release existiert
   - Live Shows: erst kommende (aufsteigend), dann vergangene (absteigend)
   - Ticket-Button bei kommenden Shows optional
 
 ## Projektstruktur
 
 ```text
-epk-site/
+.
 ├── astro.config.mjs
 ├── package.json
+├── package-lock.json
 ├── tsconfig.json
+├── README.md
 ├── public/
 │   ├── assets/
 │   │   ├── audio/
@@ -72,16 +75,12 @@ Dateien: `src/content/resources/*.md`
 
 Dateien im Ordner `public/assets/downloads/` ablegen und Pfad im Feld `file` referenzieren.
 
-### 4. Profilbild
-
-Im Top-Banner-Component wird bei leerem Bild automatisch `/assets/images/profile-fallback.svg` genutzt.
-
 ## Song-Datei hinterlegen
 
 Lege MP3-Dateien in `public/assets/audio/` ab und trage den Pfad im jeweiligen Release ein, z. B.:
 
 ```yaml
-audio: "/assets/audio/zaertlicher-applaus.mp3"
+audio: "/assets/audio/mein-song.mp3"
 ```
 
 ## Lokal starten
@@ -105,6 +104,7 @@ npm run preview
 3. Repository auswählen.
 4. Build-Einstellungen:
 - Framework preset: `Astro`
+- Root directory: `/` (leer lassen)
 - Build command: `npm run build`
 - Build output directory: `dist`
 5. Deploy ausführen.
@@ -112,5 +112,5 @@ npm run preview
 ## Hinweise
 
 - Keine UI-Frameworks, kein Inline-CSS, kein Inline-JS.
-- Alle Pfade sind relativ zur Astro-Static-Ausgabe bzw. aus `/public` servierbar.
 - Für bestmögliche Performance wird Audio erst beim ersten Klick initialisiert (`preload = none`).
+- Build-/Cache-Verzeichnisse wie `node_modules`, `dist`, `.astro` sind lokal und gehören nicht ins Repository.
