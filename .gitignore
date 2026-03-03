@@ -1,5 +1,5 @@
 .DS_Store
 **/.DS_Store
-epk-site/node_modules/
-epk-site/dist/
-epk-site/.astro/
+node_modules/
+dist/
+.astro/
