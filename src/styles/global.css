@@ -52,3 +52,11 @@ img { display: block; max-width: 100%; }
 .stb-portrait { --image-ratio: 3 / 4; }
 .stb-portrait > img { object-position: center top; }
 .more-release-artwork { width: 84px; }
+
+/* The hero always crops from the visual centre, including narrow viewports. */
+.hero { background-position: center center; background-size: cover; }
+@media (max-width: 700px) { .hero { background-position: center center; background-size: cover; } }
+
+/* A real overlay layer covers the complete, dynamically sized touchdown section. */
+.stb-touchdown::before { display: none; }
+.stb-touchdown-overlay { position: absolute; z-index: 1; inset: 0; min-height: 100%; background: linear-gradient(90deg, rgba(3,13,14,.92), rgba(3,13,14,.84)); pointer-events: none; }
