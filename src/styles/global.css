@@ -26,3 +26,12 @@ img { display: block; max-width: 100%; }
 
 @media (max-width: 700px) { .hero { background-attachment: scroll; background-position: 56% center; }.site-header { padding: 1.25rem 1.5rem; }.site-header nav { gap: 1rem; font-size: .61rem; }.hero-content { padding: 3rem 0 6rem; }.featured-card { grid-template-columns: 1fr; gap: 2rem; }.featured-artwork { grid-row: auto; max-width: 320px; }.featured-actions { justify-content: flex-start; }.release-grid, .about-grid, .stb-story-grid, .stb-connect { grid-template-columns: 1fr; }.release-artwork { max-width: 430px; width: calc(100% - 1.1rem); }.release-info { margin-top: 1.5rem; }.live-heading-row { display: block; }.live-heading-row p { margin-top: 1.5rem; }.date { grid-template-columns: 1fr auto; gap: .7rem 1rem; }.date > div { grid-column: 1 / -1; grid-row: 2; }.site-footer { grid-template-columns: 1fr; gap: .5rem; }.footer-links { justify-content: flex-start; margin-top: 1.4rem; }.stb-header { width: calc(100% - 2.5rem); }.stb-header span { font-size: .57rem; }.stb-hero-content { width: min(100% - 2.5rem, 400px); padding-bottom: 3rem; }.stb-story-grid { gap: 4rem; }.stb-portrait-wrap { width: calc(100% - 1rem); }.stb-touchdown { min-height: 670px; }.stb-touchdown::before { top: -14%; right: -35%; width: 100vw; }.stb-connect { gap: 3rem; }.stb-footer { gap: 1rem; }.stb-footer span { text-align: right; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; }.hero { background-attachment: scroll; }.scroll-cue i { animation: none; }*, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; } }
+
+/* Lucide icon system and Touchdown background */
+.lucide-icon { display: inline-block; width: 1em; height: 1em; flex: 0 0 auto; stroke: currentColor; vertical-align: -.14em; }
+.scroll-cue .lucide-icon { width: 1.45rem; height: 1.45rem; animation: scroll-bounce 1.8s ease-in-out infinite; }
+.statement-mark .lucide-icon { width: 1.8rem; height: 1.8rem; }.icon-strip .lucide-icon { width: 1.15rem; height: 1.15rem; }
+.stb-touchdown { background: #061819 url('/touchdown.png') center 42% / cover no-repeat; }
+.stb-touchdown::before { z-index: 0; inset: 0; width: auto; height: auto; border: 0; border-radius: 0; background: linear-gradient(90deg, rgba(3,13,14,.92), rgba(3,13,14,.84)); }
+.stb-touchdown::after, .stb-touchdown-number { display: none; }
+.stb-touchdown-content { position: relative; z-index: 1; }

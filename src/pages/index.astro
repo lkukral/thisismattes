@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import LucideIcon from "../components/LucideIcon.astro";
 ---
 
 <BaseLayout title="Mattes – Zwischen Verletzlichkeit und Aufbruch" description="Offizielle Website von Mattes. Neue Musik, Live-Termine und alles dazwischen.">
@@ -11,14 +12,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <nav aria-label="Seitennavigation"><a href="#musik">Musik</a><a href="#mattes">Über Mattes</a><a href="#live">Live</a></nav>
       </header>
       <div class="hero-content"><img class="hero-logo" src="/mattes_logo_1500w.png" alt="Mattes" /></div>
-      <a class="scroll-cue" href="#release-card" aria-label="Zum aktuellen Release scrollen"><span>Scroll to feel</span><i aria-hidden="true">↓</i></a>
+      <a class="scroll-cue" href="#release-card" aria-label="Zum aktuellen Release scrollen"><span>Scroll to feel</span><LucideIcon name="arrow-down" /></a>
     </section>
 
     <section class="featured-release" id="release-card" aria-labelledby="featured-release-heading">
       <div class="featured-card">
         <img class="featured-artwork" src="/st-brown-artwork.webp" alt="Cover der Single St. Brown" />
         <div class="featured-copy"><p class="eyebrow">Neue Single</p><h1 id="featured-release-heading">St. Brown</h1><p>Der Song für Detroit Lions Star Amon-Ra St. Brown und alle, die Football lieben.</p></div>
-        <div class="featured-actions"><a class="button button-primary" href="/releases/st-brown">Release entdecken <span aria-hidden="true">↗</span></a><a class="button button-ghost" href="https://www.instagram.com/thisismattes" target="_blank" rel="noreferrer">Instagram</a><a class="button button-ghost" href="https://www.tiktok.com/@thisismattes" target="_blank" rel="noreferrer">TikTok</a></div>
+        <div class="featured-actions"><a class="button button-primary" href="/releases/st-brown">Release entdecken <LucideIcon name="arrow-up-right" /></a><a class="button button-ghost" href="https://www.instagram.com/thisismattes" target="_blank" rel="noreferrer">Instagram</a><a class="button button-ghost" href="https://www.tiktok.com/@thisismattes" target="_blank" rel="noreferrer">TikTok</a></div>
       </div>
     </section>
 
@@ -26,14 +27,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <div class="section-kicker"><span>01</span> Aktueller Release</div>
       <div class="release-grid">
         <img class="release-artwork" src="/st-brown-artwork.webp" alt="Cover der Single St. Brown" />
-        <div class="release-info"><p class="eyebrow dark">Neue Single</p><h2 id="release-heading">St. Brown</h2><p class="intro">Der Song für Detroit Lions Star Amon-Ra St. Brown und alle, die Football lieben.</p><div class="stream-list"><span>Jetzt anhören auf</span><a href="https://listen.music-hub.com/EfEaxn" target="_blank" rel="noreferrer">Alle Streaming-Dienste <span aria-hidden="true">↗</span></a></div></div>
+        <div class="release-info"><p class="eyebrow dark">Neue Single</p><h2 id="release-heading">St. Brown</h2><p class="intro">Der Song für Detroit Lions Star Amon-Ra St. Brown und alle, die Football lieben.</p><div class="stream-list"><span>Jetzt anhören auf</span><a href="https://listen.music-hub.com/EfEaxn" target="_blank" rel="noreferrer">Alle Streaming-Dienste <LucideIcon name="arrow-up-right" /></a></div></div>
       </div>
-      <div class="more-releases" aria-labelledby="more-releases-heading"><p id="more-releases-heading">Weitere Releases</p><a class="more-release" href="https://open.spotify.com/intl-de/track/7g28jZp5Hl9X5JQvC5TjK9?si=1da5a988f4ae4f2e" target="_blank" rel="noreferrer"><img src="/artwork_zaertlicher_applaus.jpg" alt="Cover der Single Zärtlicher Applaus" /><span><strong>Zärtlicher Applaus</strong><small>Single</small></span><span class="release-arrow" aria-hidden="true">↗</span></a></div>
+      <div class="more-releases" aria-labelledby="more-releases-heading"><p id="more-releases-heading">Weitere Releases</p><a class="more-release" href="https://open.spotify.com/intl-de/track/7g28jZp5Hl9X5JQvC5TjK9?si=1da5a988f4ae4f2e" target="_blank" rel="noreferrer"><img src="/artwork_zaertlicher_applaus.jpg" alt="Cover der Single Zärtlicher Applaus" /><span><strong>Zärtlicher Applaus</strong><small>Single</small></span><LucideIcon name="arrow-up-right" /></a></div>
     </section>
 
-    <section class="statement" aria-label="Markenbotschaft"><div class="statement-mark">✦</div><p>Zweifel gehören dazu.<br /><em>Herz, Mut und Zuversicht</em><br />bringen dich voran.</p><div class="statement-tags"><span>Live on</span><span>Keep going</span><span>Feel it all</span></div></section>
+    <section class="statement" aria-label="Markenbotschaft"><div class="statement-mark"><LucideIcon name="sparkles" /></div><p>Zweifel gehören dazu.<br /><em>Herz, Mut und Zuversicht</em><br />bringen dich voran.</p><div class="statement-tags"><span>Live on</span><span>Keep going</span><span>Feel it all</span></div></section>
 
-    <section class="about section" id="mattes" aria-labelledby="about-heading"><div class="section-kicker"><span>02</span> Über Mattes</div><div class="about-grid"><div><h2 id="about-heading">Ehrliche Songs.<br />Klare Kante.<br /><span>Volles Leben.</span></h2><div class="icon-strip" aria-hidden="true"><span>♥</span><span>★</span><span>10</span><span>↗</span></div></div><div class="about-copy"><p>Mattes macht deutschsprachigen Indie-Pop für Menschen, die viel fühlen, viel nachdenken und trotzdem nicht aufhören wollen, an sich zu glauben.</p><p>Seine Songs entstehen aus Momenten, in denen nicht immer alles leicht ist: Selbstzweifel, Druck, das Gefühl, nicht genug zu sein. Sie bleiben aber nie dort stehen. Es geht um den Mut, wieder aufzustehen und weiterzugehen, auch wenn man unsicher ist.</p><p>Große Melodien treffen auf ehrliche Texte und modernen Pop mit internationalem Vibe. Emotional, aber nie schwer. Musik, die verbindet, Kraft gibt und mit dir weiterläuft.</p><a class="text-link" href="https://www.instagram.com/thisismattes" target="_blank" rel="noreferrer">Mehr von Mattes sehen <span aria-hidden="true">↗</span></a></div></div></section>
+    <section class="about section" id="mattes" aria-labelledby="about-heading"><div class="section-kicker"><span>02</span> Über Mattes</div><div class="about-grid"><div><h2 id="about-heading">Ehrliche Songs.<br />Klare Kante.<br /><span>Volles Leben.</span></h2><div class="icon-strip" aria-hidden="true"><span><LucideIcon name="heart" /></span><span><LucideIcon name="star" /></span><span>10</span><span><LucideIcon name="arrow-up-right" /></span></div></div><div class="about-copy"><p>Mattes macht deutschsprachigen Indie-Pop für Menschen, die viel fühlen, viel nachdenken und trotzdem nicht aufhören wollen, an sich zu glauben.</p><p>Seine Songs entstehen aus Momenten, in denen nicht immer alles leicht ist: Selbstzweifel, Druck, das Gefühl, nicht genug zu sein. Sie bleiben aber nie dort stehen. Es geht um den Mut, wieder aufzustehen und weiterzugehen, auch wenn man unsicher ist.</p><p>Große Melodien treffen auf ehrliche Texte und modernen Pop mit internationalem Vibe. Emotional, aber nie schwer. Musik, die verbindet, Kraft gibt und mit dir weiterläuft.</p><a class="text-link" href="https://www.instagram.com/thisismattes" target="_blank" rel="noreferrer">Mehr von Mattes sehen <LucideIcon name="arrow-up-right" /></a></div></div></section>
 
     <section class="live section" id="live" aria-labelledby="live-heading"><div class="section-kicker light"><span>03</span> Auf die Bühne</div><div class="live-heading-row"><h2 id="live-heading">Live<br /><span>Dabei sein.</span></h2><p>Für Mitsing-Momente, Gänsehaut und alles dazwischen.</p></div><div class="dates"><article class="date"><time datetime="2026-06-14">14.06.2026</time><div><h3>Neuburg a.d. Donau</h3><p>Bühne · Hofgartenfest</p></div><span class="date-status">Infos folgen</span></article><article class="date"><time datetime="2026-03-06">06.03.2026</time><div><h3>Neuburg a.d. Donau</h3><p>Piu Piano · Official Release Party</p></div><span class="date-status">Infos folgen</span></article></div></section>
 
