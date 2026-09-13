@@ -1,15 +1,27 @@
 ---
+import { content, localizedPath, type Locale, type PageKey } from "../i18n";
+
 interface Props {
   title: string;
   description: string;
+  locale: Locale;
+  page: PageKey;
 }
 
-const { title, description } = Astro.props;
+const { title, description, locale, page } = Astro.props;
 import "../styles/global.css";
+
+const site = Astro.site ?? new URL("https://thisismattes.de");
+const canonicalUrl = new URL(localizedPath(locale, page), site);
+const germanUrl = new URL(localizedPath("de", page), site);
+const englishUrl = new URL(localizedPath("en", page), site);
+const ogLocale = locale === "de" ? "de_DE" : "en_US";
+const alternateOgLocale = locale === "de" ? "en_US" : "de_DE";
+const shared = content[locale].shared;
 ---
 
 <!doctype html>
-<html lang="de">
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,11 +31,18 @@ import "../styles/global.css";
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://thisismattes.de/" />
-    <meta property="og:image" content="/mattes_background.jpg" />
+    <meta property="og:url" content={canonicalUrl.href} />
+    <meta property="og:image" content={new URL("/mattes_background.jpg", site).href} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale:alternate" content={alternateOgLocale} />
+
+    <link rel="canonical" href={canonicalUrl.href} />
+    <link rel="alternate" hreflang="de" href={germanUrl.href} />
+    <link rel="alternate" hreflang="en" href={englishUrl.href} />
+    <link rel="alternate" hreflang="x-default" href={germanUrl.href} />
   </head>
   <body>
-    <a class="skip-link" href="#main-content">Zum Inhalt springen</a>
+    <a class="skip-link" href="#main-content">{shared.skipLink}</a>
     <slot />
   </body>
 </html>

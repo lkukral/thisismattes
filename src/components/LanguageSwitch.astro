@@ -1,0 +1,25 @@
+---
+import { content, localizedPath, type Locale, type PageKey } from "../i18n";
+
+interface Props {
+  locale: Locale;
+  page: PageKey;
+}
+
+const { locale, page } = Astro.props;
+const labels = content[locale].shared;
+---
+
+<nav class="language-switch" aria-label={labels.languageSwitch}>
+  {(["de", "en"] as const).map((targetLocale) => (
+    <a
+      href={localizedPath(targetLocale, page)}
+      lang={targetLocale}
+      hreflang={targetLocale}
+      aria-current={targetLocale === locale ? "page" : undefined}
+      aria-label={labels.languageNames[targetLocale]}
+    >
+      {targetLocale.toUpperCase()}
+    </a>
+  ))}
+</nav>

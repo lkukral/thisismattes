@@ -1,0 +1,35 @@
+---
+import { Image } from "astro:assets";
+import mattesProfile from "../../assets/mattes_profile.jpg";
+import stBrownArtwork from "../../assets/st-brown-artwork.webp";
+import touchdownImage from "../../assets/touchdown.png";
+import { getContent, localizedPath, type Locale } from "../../i18n";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import LanguageSwitch from "../LanguageSwitch.astro";
+import LucideIcon from "../LucideIcon.astro";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = getContent(locale);
+const { release } = copy;
+---
+
+<BaseLayout title={release.meta.title} description={release.meta.description} locale={locale} page="release">
+  <main id="main-content" class="stb-page">
+    <section class="stb-hero" aria-labelledby="stb-title">
+      <Image class="stb-hero-backdrop" src={stBrownArtwork} alt="" loading="eager" />
+      <header class="stb-header"><a class="stb-wordmark" href={localizedPath(locale, "home")} aria-label={release.header.homeLabel}>MATTES</a><div class="stb-header-actions"><span>{release.header.releaseYear}</span><LanguageSwitch locale={locale} page="release" /></div></header>
+      <div class="stb-hero-content"><p class="stb-kicker">{release.hero.label}</p><h1 id="stb-title">St. Brown</h1><div class="image-frame stb-cover"><Image src={stBrownArtwork} alt={release.hero.coverAlt} priority layout="constrained" /></div><div class="stb-hero-actions"><a class="stb-button stb-button-primary" href="https://listen.music-hub.com/EfEaxn" target="_blank" rel="noreferrer">{release.hero.stream} <LucideIcon name="arrow-up-right" /></a><a class="stb-button stb-button-secondary" href="#touchdown">{release.hero.touchdownLink} <LucideIcon name="arrow-down" /></a></div></div>
+    </section>
+
+    <section class="stb-story" aria-labelledby="song-heading"><div class="stb-section-label"><span>01</span> {release.story.sectionLabel}</div><div class="stb-story-grid"><div class="stb-portrait-wrap"><div class="image-frame stb-portrait"><Image src={mattesProfile} alt={release.story.portraitAlt} layout="constrained" /></div><span class="stb-portrait-caption">{release.story.portraitCaption}</span></div><div class="stb-story-copy"><h2 id="song-heading">{release.story.heading[0]}<br /><em>{release.story.heading[1]}</em></h2>{release.story.paragraphs.map((paragraph) => <p>{paragraph}</p>)}<a class="stb-story-link" href="https://www.instagram.com/thisismattes" target="_blank" rel="noreferrer">{release.story.instagramLink} <LucideIcon name="arrow-up-right" /></a></div></div></section>
+
+    <section class="stb-touchdown" id="touchdown" aria-labelledby="touchdown-heading"><Image class="stb-touchdown-background" src={touchdownImage} alt="" layout="full-width" /><div class="stb-touchdown-overlay" aria-hidden="true"></div><div class="stb-touchdown-content"><div class="stb-section-label stb-section-label-light"><span>02</span> {release.touchdown.sectionLabel}</div><h2 id="touchdown-heading">{release.touchdown.heading[0]}<br /><em>{release.touchdown.heading[1]}</em><br />{release.touchdown.heading[2]}</h2><p>{release.touchdown.description}</p><a class="stb-button stb-button-download" href="https://drive.google.com/file/d/1rhnjFfbq7fjGmo4c9LUPBTKQaDGHAeUM/view?usp=sharing" target="_blank" rel="noreferrer">{release.touchdown.download} <LucideIcon name="arrow-down" /></a></div></section>
+
+    <section class="stb-connect" aria-labelledby="connect-heading"><div><div class="stb-section-label"><span>03</span> {release.connect.sectionLabel}</div><h2 id="connect-heading">{release.connect.heading[0]}<br />{release.connect.heading[1]}</h2></div><div class="stb-social-links" aria-label={release.connect.label}><a href="https://www.instagram.com/thisismattes" target="_blank" rel="noreferrer">Instagram <LucideIcon name="arrow-up-right" /></a><a href="https://www.tiktok.com/@thisismattes" target="_blank" rel="noreferrer">TikTok <LucideIcon name="arrow-up-right" /></a><a href={localizedPath(locale, "home")}>{release.connect.homeLink} <LucideIcon name="arrow-up-right" /></a></div></section>
+    <footer class="stb-footer"><a href={localizedPath(locale, "home")}>MATTES</a><div class="stb-footer-actions"><LanguageSwitch locale={locale} page="release" /><span>{release.footer}</span></div></footer>
+  </main>
+</BaseLayout>

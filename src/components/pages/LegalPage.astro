@@ -1,0 +1,23 @@
+---
+import { getContent, localizedPath, type Locale } from "../../i18n";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import LanguageSwitch from "../LanguageSwitch.astro";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = getContent(locale);
+const { legal } = copy;
+---
+
+<BaseLayout title={legal.meta.title} description={legal.meta.description} locale={locale} page="legal">
+  <main id="main-content" class="legal-page">
+    <header class="legal-header"><a class="wordmark" href={localizedPath(locale, "home")}>MATTES</a><div class="legal-header-actions"><LanguageSwitch locale={locale} page="legal" /><a href={localizedPath(locale, "home")}>{legal.homeLink}</a></div></header>
+    <div class="legal-content">
+      <p class="eyebrow dark">{legal.eyebrow}</p><h1>{legal.heading}</h1>
+      {legal.sections.map((section) => <section class="legal-section" aria-labelledby={`${section.id}-heading`}><h2 id={`${section.id}-heading`}>{section.title}</h2><p>{section.body.map((line, index) => <>{line.includes("hello@thisismattes.de") ? <>{line.slice(0, line.indexOf("hello@thisismattes.de"))}<a href="mailto:hello@thisismattes.de">hello@thisismattes.de</a></> : line}{index < section.body.length - 1 && <br />}</>)}</p></section>)}
+    </div>
+  </main>
+</BaseLayout>
