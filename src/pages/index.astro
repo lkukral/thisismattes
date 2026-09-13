@@ -24,7 +24,7 @@ const optimizedHeroBackground = await getImage({ src: mattesBackground, width: 1
 
     <section class="featured-release" id="release-card" aria-labelledby="featured-release-heading">
       <div class="featured-card">
-        <Image class="featured-artwork" src={stBrownArtwork} alt="Cover der Single St. Brown" layout="constrained" />
+        <div class="image-frame featured-artwork"><Image src={stBrownArtwork} alt="Cover der Single St. Brown" layout="constrained" /></div>
         <div class="featured-copy"><p class="eyebrow">Neue Single</p><h1 id="featured-release-heading">St. Brown</h1><p>Der Song für Detroit Lions Star Amon-Ra St. Brown und alle, die Football lieben.</p></div>
         <div class="featured-actions"><a class="button button-primary" href="/releases/st-brown">Release entdecken <LucideIcon name="arrow-up-right" /></a><a class="button button-ghost" href="https://www.instagram.com/thisismattes" target="_blank" rel="noreferrer">Instagram</a><a class="button button-ghost" href="https://www.tiktok.com/@thisismattes" target="_blank" rel="noreferrer">TikTok</a></div>
       </div>
@@ -33,10 +33,10 @@ const optimizedHeroBackground = await getImage({ src: mattesBackground, width: 1
     <section class="release section" id="musik" aria-labelledby="release-heading">
       <div class="section-kicker"><span>01</span> Aktueller Release</div>
       <div class="release-grid">
-        <Image class="release-artwork" src={stBrownArtwork} alt="Cover der Single St. Brown" layout="constrained" />
+        <div class="image-frame release-artwork"><Image src={stBrownArtwork} alt="Cover der Single St. Brown" layout="constrained" /></div>
         <div class="release-info"><p class="eyebrow dark">Neue Single</p><h2 id="release-heading">St. Brown</h2><p class="intro">Der Song für Detroit Lions Star Amon-Ra St. Brown und alle, die Football lieben.</p><div class="stream-list"><span>Jetzt anhören auf</span><a href="https://listen.music-hub.com/EfEaxn" target="_blank" rel="noreferrer">Alle Streaming-Dienste <LucideIcon name="arrow-up-right" /></a></div></div>
       </div>
-      <div class="more-releases" aria-labelledby="more-releases-heading"><p id="more-releases-heading">Weitere Releases</p><a class="more-release" href="https://open.spotify.com/intl-de/track/7g28jZp5Hl9X5JQvC5TjK9?si=1da5a988f4ae4f2e" target="_blank" rel="noreferrer"><Image src={zaertlicherApplausArtwork} alt="Cover der Single Zärtlicher Applaus" width={168} /><span><strong>Zärtlicher Applaus</strong><small>Single</small></span><LucideIcon name="arrow-up-right" /></a></div>
+      <div class="more-releases" aria-labelledby="more-releases-heading"><p id="more-releases-heading">Weitere Releases</p><a class="more-release" href="https://open.spotify.com/intl-de/track/7g28jZp5Hl9X5JQvC5TjK9?si=1da5a988f4ae4f2e" target="_blank" rel="noreferrer"><div class="image-frame more-release-artwork"><Image src={zaertlicherApplausArtwork} alt="Cover der Single Zärtlicher Applaus" width={168} /></div><span><strong>Zärtlicher Applaus</strong><small>Single</small></span><LucideIcon name="arrow-up-right" /></a></div>
     </section>
 
     <section class="statement" aria-label="Markenbotschaft"><div class="statement-mark"><LucideIcon name="sparkles" /></div><p>Zweifel gehören dazu.<br /><em>Herz, Mut und Zuversicht</em><br />bringen dich voran.</p><div class="statement-tags"><span>Live on</span><span>Keep going</span><span>Feel it all</span></div></section>
