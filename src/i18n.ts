@@ -68,8 +68,15 @@ export const content = {
         heading: ["Live", "Dabei sein."],
         description: "Für Mitsing-Momente, Gänsehaut und alles dazwischen.",
         events: [
-          { date: "2026-06-14", displayDate: "14.06.2026", city: "Neuburg a.d. Donau", venue: "Bühne · Hofgartenfest", status: "Infos folgen" },
-          { date: "2026-03-06", displayDate: "06.03.2026", city: "Neuburg a.d. Donau", venue: "Piu Piano · Official Release Party", status: "Infos folgen" }
+          { date: "2026-09-03", displayDate: "03.09.2026", city: "Köln", venue: "Copper Pot", status: "Infos folgen" },
+          { date: "2026-09-04", displayDate: "04.09.2026", city: "Langenfeld", venue: "Copper Pot", status: "Infos folgen" },
+          { date: "2026-10-16", displayDate: "16.10.2026", city: "Salzburg", venue: "Shamrock", status: "Infos folgen" },
+          { date: "2026-10-17", displayDate: "17.10.2026", city: "Salzburg", venue: "Shamrock", status: "Infos folgen" },
+          { date: "2026-11-13", displayDate: "13.11.2026", city: "München", venue: "Kennedy's", status: "Infos folgen" },
+          { date: "2026-11-27", displayDate: "27.11.2026", city: "Salzburg", venue: "Shamrock", status: "Infos folgen" },
+          { date: "2026-11-28", displayDate: "28.11.2026", city: "Salzburg", venue: "Shamrock", status: "Infos folgen" },
+          { date: "2027-01-05", displayDate: "05.01.2027", city: "Neuburg a.d. Donau", venue: "Drogerie", status: "Infos folgen" },
+          { date: "2027-02-20", displayDate: "20.02.2027", city: "Ingolstadt", venue: "Halle Neun", status: "Infos folgen" }
         ]
       },
       footer: { tagline: "Zwischen Verletzlichkeit und Aufbruch.", legal: "Impressum" }
@@ -168,8 +175,15 @@ export const content = {
         heading: ["Live", "Be there."],
         description: "For singalong moments, goosebumps, and everything in between.",
         events: [
-          { date: "2026-06-14", displayDate: "14 June 2026", city: "Neuburg a.d. Donau", venue: "Stage · Hofgarten Festival", status: "More details soon" },
-          { date: "2026-03-06", displayDate: "6 March 2026", city: "Neuburg a.d. Donau", venue: "Piu Piano · Official release party", status: "More details soon" }
+          { date: "2026-09-03", displayDate: "3 September 2026", city: "Cologne", venue: "Copper Pot", status: "More details soon" },
+          { date: "2026-09-04", displayDate: "4 September 2026", city: "Langenfeld", venue: "Copper Pot", status: "More details soon" },
+          { date: "2026-10-16", displayDate: "16 October 2026", city: "Salzburg", venue: "Shamrock", status: "More details soon" },
+          { date: "2026-10-17", displayDate: "17 October 2026", city: "Salzburg", venue: "Shamrock", status: "More details soon" },
+          { date: "2026-11-13", displayDate: "13 November 2026", city: "Munich", venue: "Kennedy's", status: "More details soon" },
+          { date: "2026-11-27", displayDate: "27 November 2026", city: "Salzburg", venue: "Shamrock", status: "More details soon" },
+          { date: "2026-11-28", displayDate: "28 November 2026", city: "Salzburg", venue: "Shamrock", status: "More details soon" },
+          { date: "2027-01-05", displayDate: "5 January 2027", city: "Neuburg a.d. Donau", venue: "Drogerie", status: "More details soon" },
+          { date: "2027-02-20", displayDate: "20 February 2027", city: "Ingolstadt", venue: "Halle Neun", status: "More details soon" }
         ]
       },
       footer: { tagline: "Between vulnerability and new beginnings.", legal: "Legal notice" }
