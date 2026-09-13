@@ -1,92 +1,17 @@
-# EPK Site (Astro)
+# Mattes
 
-Produktionsreifes, statisches Electronic Press Kit (EPK) für Musiker:innen auf Basis von [Astro](https://docs.astro.build/en/getting-started/), mit modularer Komponenten-Architektur und Content Collections.
+Statische Künstlerwebsite von Mattes mit der Startseite, dem Release **St. Brown** und dem Impressum.
 
-## Features
+## Routen
 
-- Deutsche, semantische EPK-Seite (Header, Hero, Sidebar, Releases, Bio, Shows, Ressourcen)
-- Zusätzliche Seite `Impressum` mit eigener Route (`/impressum`)
-- Schwarz/Weiß Design mit editorial Look über Linien, Borders und Spacing
-- Responsive Layout (mobile-first) inkl. Sidebar-Verhalten
-- Audio-Player mit Play/Pause, Fortschrittsbalken, aktueller Zeit und Gesamtdauer
-- Content Collections für:
-  - Releases
-  - Live Shows
-  - Ressourcen
-- Logikregeln:
-  - Neuester Release wird als „Aktueller Release" im Hero angezeigt
-  - Bereich „Frühere Releases" zeigt max. 3 Einträge und nur, wenn mehr als 1 Release existiert
-  - Live Shows: erst kommende (aufsteigend), dann vergangene (absteigend)
-  - Ticket-Button bei kommenden Shows optional
+- `/` – Künstler-Homepage mit Musik, Künstlerinfo und Live-Terminen
+- `/releases/st-brown` – Landing-Page zum Song mit Streaming- und Download-Links
+- `/impressum` – rechtliche Angaben
 
-## Projektstruktur
-
-```text
-.
-├── astro.config.mjs
-├── package.json
-├── package-lock.json
-├── tsconfig.json
-├── README.md
-├── public/
-│   ├── assets/
-│   │   ├── audio/
-│   │   ├── downloads/
-│   │   ├── icons/
-│   │   └── images/
-│   └── js/
-│       └── main.js
-└── src/
-    ├── components/
-    ├── content/
-    │   ├── releases/
-    │   ├── resources/
-    │   └── shows/
-    ├── layouts/
-    ├── pages/
-    ├── styles/
-    └── content.config.ts
-```
-
-## Inhalte austauschen
-
-### 1. Releases
-
-Dateien: `src/content/releases/*.md`
-
-Wichtige Felder:
-
-- `releaseDate` (Sortierung)
-- `artwork` (z. B. `/assets/images/mein-artwork.jpg`)
-- `audio` (z. B. `/assets/audio/mein-song.mp3`)
-- Plattform-Links (`spotifyUrl`, `appleMusicUrl`, ...)
-
-Wenn `artwork` leer ist, wird automatisch ein 1:1 Fallback-Artwork genutzt.
-
-### 2. Live Shows
-
-Dateien: `src/content/shows/*.md`
-
-Optionaler Ticket-Link über `ticketUrl`.
-
-### 3. Ressourcen
-
-Dateien: `src/content/resources/*.md`
-
-Dateien im Ordner `public/assets/downloads/` ablegen und Pfad im Feld `file` referenzieren.
-
-## Song-Datei hinterlegen
-
-Lege MP3-Dateien in `public/assets/audio/` ab und trage den Pfad im jeweiligen Release ein, z. B.:
-
-```yaml
-audio: "/assets/audio/mein-song.mp3"
-```
-
-## Lokal starten
+## Lokal entwickeln
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
@@ -94,23 +19,16 @@ npm run dev
 
 ```bash
 npm run build
-npm run preview
 ```
 
-## Deployment mit GitHub + Cloudflare Pages
+Der Build erzeugt eine statische Website in `dist/`.
 
-1. Projekt nach GitHub pushen.
-2. In Cloudflare: **Workers & Pages** -> **Create application** -> **Pages** -> **Connect to Git**.
-3. Repository auswählen.
-4. Build-Einstellungen:
-- Framework preset: `Astro`
-- Root directory: `/` (leer lassen)
-- Build command: `npm run build`
-- Build output directory: `dist`
-5. Deploy ausführen.
+## Deployment
 
-## Hinweise
+Cloudflare Pages ist mit diesem GitHub-Repository verbunden. Die Einstellungen bleiben:
 
-- Keine UI-Frameworks, kein Inline-CSS, kein Inline-JS.
-- Für bestmögliche Performance wird Audio erst beim ersten Klick initialisiert (`preload = none`).
-- Build-/Cache-Verzeichnisse wie `node_modules`, `dist`, `.astro` sind lokal und gehören nicht ins Repository.
+- Framework: `Astro`
+- Build-Befehl: `npm run build`
+- Ausgabe-Verzeichnis: `dist`
+
+Ein Push auf `main` löst den Deployment-Build aus. Anschließend muss die Domain `thisismattes.de` in Cloudflare Pages auf das neue Deployment zeigen.
