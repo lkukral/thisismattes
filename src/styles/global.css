@@ -31,7 +31,16 @@ img { display: block; max-width: 100%; }
 .lucide-icon { display: inline-block; width: 1em; height: 1em; flex: 0 0 auto; stroke: currentColor; vertical-align: -.14em; }
 .scroll-cue .lucide-icon { width: 1.45rem; height: 1.45rem; animation: scroll-bounce 1.8s ease-in-out infinite; }
 .statement-mark .lucide-icon { width: 1.8rem; height: 1.8rem; }.icon-strip .lucide-icon { width: 1.15rem; height: 1.15rem; }
-.stb-touchdown { background: #061819 url('/touchdown.png') center 42% / cover no-repeat; }
 .stb-touchdown::before { z-index: 0; inset: 0; width: auto; height: auto; border: 0; border-radius: 0; background: linear-gradient(90deg, rgba(3,13,14,.92), rgba(3,13,14,.84)); }
 .stb-touchdown::after, .stb-touchdown-number { display: none; }
 .stb-touchdown-content { position: relative; z-index: 1; }
+
+/* Astro asset output: optimized local images instead of unprocessed public files. */
+.hero { background: #0b2528 var(--hero-background) center / cover fixed no-repeat; }
+.stb-hero-backdrop { width: 124%; height: 124%; background: none; object-fit: cover; object-position: center; }
+.stb-touchdown { background: #061819; }
+.stb-touchdown-background { position: absolute; z-index: 0; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 42%; }
+.stb-touchdown::before { z-index: 1; }
+.stb-touchdown-content { z-index: 2; }
+.stb-touchdown h2 { font-size: clamp(3.2rem, 6vw, 6.5rem); }
+.stb-story-link { display: inline-flex; min-height: 48px; margin-top: .5rem; padding: .75rem 1rem; align-items: center; gap: 1rem; background: var(--stb-ink); color: #fff; font-size: .74rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; transition: background-color .2s ease, transform .2s ease; }.stb-story-link:hover { background: var(--stb-petrol); transform: translateY(-2px); }
