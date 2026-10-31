@@ -1,0 +1,90 @@
+---
+import { Image, getImage } from "astro:assets";
+import spotifyLogo from "../../assets/spotify-logo-white.png";
+import helmet from "../../assets/stbrown-helmet.png";
+import stadium from "../../assets/muenchen-singt-background.jpg";
+import whatsappLogo from "../../assets/whatsapp-logo.webp";
+import stBrownArtwork from "../../assets/st-brown-artwork.webp";
+import HookPlayer from "../HookPlayer.astro";
+import CampaignVideoPlaceholder from "../CampaignVideoPlaceholder.astro";
+import mattesProfile from "../../assets/mattes_profile.jpg";
+import { getContent, localizedPath, type Locale } from "../../i18n";
+import { campaignContent } from "../../campaign-content";
+import { whatsappGroupUrl, touchdownDownloadUrl, songStreamingUrl, songSpotifyUrl } from "../../config/campaign";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import LanguageSwitch from "../LanguageSwitch.astro";
+import LucideIcon from "../LucideIcon.astro";
+import CampaignJoin from "../CampaignJoin.astro";
+import "../../styles/campaign.css";
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const copy = campaignContent[locale];
+const { release } = getContent(locale);
+const backdrop = await getImage({ src: stadium, width: 2000, format: "webp" });
+---
+<BaseLayout title={copy.title} description={copy.description} locale={locale} page="campaign" image="/assets/muenchen-singt-sticker.jpg" imageAlt={copy.imageAlt}>
+  <main id="main-content" class="stb-page campaign-page">
+    <section class="campaign-hero" aria-labelledby="campaign-title" style={{ "--campaign-background": `url('${backdrop.src}')` }}>
+      <header class="stb-header">
+        <a class="stb-wordmark" href={localizedPath(locale, "home")} aria-label={release.header.homeLabel}>MATTES</a>
+        <div class="stb-header-actions"><span class="campaign-event-header">{copy.event}</span><LanguageSwitch locale={locale} page="campaign" /></div>
+      </header>
+      <div class="campaign-hero-content">
+        <div class="campaign-title-scene">
+          <Image class="campaign-helmet" src={helmet} alt="" aria-hidden="true" widths={[320, 540, 800, 1080]} sizes="(min-width: 1048px) 540px, calc(54vw - 1.62rem)" loading="eager" />
+          <h1 id="campaign-title"><span>{copy.heading[0]}</span><span>{copy.heading[1]}</span><span>{copy.heading[2]}</span></h1>
+        </div>
+        <p class="campaign-intro">{copy.intro}</p>
+        <HookPlayer locale={locale} />
+        <a class="stb-button stb-button-primary campaign-hero-cta" href="#mitmachen">{copy.heroCta} <LucideIcon name="arrow-down" /></a>
+      </div>
+    </section>
+
+    <section class="campaign-section campaign-participate" id="mitmachen" aria-labelledby="join-heading">
+      <div class="stb-section-label"><span>01</span>{copy.joinLabel}</div>
+      <div class="campaign-participate-grid">
+        <div class="campaign-participate-copy">
+          <h2 id="join-heading">{copy.joinHeading[0]}<br /><em>{copy.joinHeading[1]}</em><br />{copy.joinHeading[2]}</h2>
+          <Image class="campaign-whatsapp-logo" src={whatsappLogo} alt="WhatsApp" width={64} />
+          <p>{copy.joinText}</p><CampaignJoin locale={locale} />
+          {!whatsappGroupUrl && <p class="campaign-pending-note">{copy.pendingNote}</p>}
+        </div>
+        <CampaignVideoPlaceholder title={copy.explainVideoTitle} description={copy.explainVideoText} />
+      </div>
+
+    </section>
+
+    <section class="campaign-section campaign-download" aria-labelledby="download-heading">
+      <div class="stb-section-label stb-section-label-light"><span>02</span>{copy.downloadLabel}</div>
+      <div class="campaign-download-grid">
+        <div><h2 id="download-heading">{copy.downloadHeading[0]}<br /><em>{copy.downloadHeading[1]}</em></h2><p>{copy.downloadText}</p><a class="stb-button stb-button-secondary campaign-download-button" href={touchdownDownloadUrl} target="_blank" rel="noreferrer">{copy.download} <LucideIcon name="arrow-down" /></a><p class="campaign-download-hint">{copy.downloadHint}</p></div>
+        <CampaignVideoPlaceholder title={copy.performanceVideoTitle} description={copy.performanceVideoText} />
+      </div>
+
+    </section>
+
+    <section class="stb-story campaign-story" aria-labelledby="full-song-heading">
+      <div class="stb-section-label"><span>03</span>{release.story.sectionLabel}</div>
+      <div class="campaign-song-grid">
+        <div class="image-frame campaign-song-cover"><Image src={stBrownArtwork} alt={release.hero.coverAlt} layout="constrained" /></div>
+        <div class="campaign-song-copy"><h2 id="full-song-heading">{copy.songHeading[0]}<br /><em>{copy.songHeading[1]}</em></h2><p>{copy.songText}</p>
+          <div class="campaign-streams" aria-label={copy.streams}><a class="stb-button campaign-stream-button campaign-spotify-button" href={songSpotifyUrl} target="_blank" rel="noreferrer"><span class="campaign-stream-button-label"><Image class="campaign-spotify-logo" src={spotifyLogo} alt="" width={28} height={28} />{copy.spotify}</span><LucideIcon name="arrow-up-right" /></a><a class="stb-button campaign-stream-button campaign-all-streams-button" href={songStreamingUrl} target="_blank" rel="noreferrer">{copy.allStreams} <LucideIcon name="arrow-up-right" /></a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stb-story campaign-artist" aria-labelledby="song-heading">
+      <div class="stb-section-label"><span>04</span>{copy.artistLabel}</div>
+      <div class="stb-story-grid">
+        <div class="stb-portrait-wrap"><div class="image-frame stb-portrait"><Image src={mattesProfile} alt={release.story.portraitAlt} layout="constrained" /></div><span class="stb-portrait-caption">{release.story.portraitCaption}</span></div>
+        <div class="stb-story-copy"><h2 id="song-heading">{release.story.heading[0]}<br /><em>{release.story.heading[1]}</em></h2>{release.story.paragraphs.map(paragraph => <p>{paragraph}</p>)}<a class="stb-story-link" href="https://www.instagram.com/thisismattes" target="_blank" rel="noreferrer">{release.story.instagramLink} <LucideIcon name="arrow-up-right" /></a></div>
+      </div>
+
+    </section>
+
+    <section class="campaign-section campaign-closing" aria-labelledby="closing-heading">
+      <p class="campaign-eyebrow">{copy.closingLabel}</p><h2 id="closing-heading">{copy.closingHeading[0]}<br /><em>{copy.closingHeading[1]}</em></h2><p>{copy.closingText}</p><CampaignJoin locale={locale} />
+    </section>
+    <footer class="stb-footer campaign-footer"><a class="campaign-footer-wordmark" href={localizedPath(locale, "home")}>MATTES</a><div class="campaign-footer-links"><a href={localizedPath(locale, "home")}>{copy.home}</a><a href={localizedPath(locale, "legal")}>{copy.legal}</a><LanguageSwitch locale={locale} page="campaign" /></div></footer>
+  </main>
+</BaseLayout>

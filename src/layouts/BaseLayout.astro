@@ -6,9 +6,11 @@ interface Props {
   description: string;
   locale: Locale;
   page: PageKey;
+  image?: string;
+  imageAlt?: string;
 }
 
-const { title, description, locale, page } = Astro.props;
+const { title, description, locale, page, image = "/mattes_background.jpg", imageAlt } = Astro.props;
 import "../styles/global.css";
 
 const site = Astro.site ?? new URL("https://thisismattes.de");
@@ -35,7 +37,9 @@ const shared = content[locale].shared;
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl.href} />
-    <meta property="og:image" content={new URL("/mattes_background.jpg", site).href} />
+    <meta property="og:image" content={new URL(image, site).href} />
+    {imageAlt && <meta property="og:image:alt" content={imageAlt} />}
+    <meta name="twitter:card" content="summary_large_image" />
     <meta property="og:locale" content={ogLocale} />
     <meta property="og:locale:alternate" content={alternateOgLocale} />
 

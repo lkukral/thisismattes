@@ -1,0 +1,60 @@
+---
+import { campaignContent } from "../campaign-content";
+import type { Locale } from "../i18n";
+import LucideIcon from "./LucideIcon.astro";
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const copy = campaignContent[locale];
+---
+<div class="hook-player" data-hook-player>
+  <div class="hook-player-row">
+    <span class="hook-player-title">{copy.audioLabel}</span>
+    <div class="hook-player-controls">
+    <button class="hook-player-toggle" type="button" aria-label={copy.audioPlay} data-play-label={copy.audioPlay} data-stop-label={copy.audioStop} aria-pressed="false" hidden>
+      <span class="hook-player-play"><LucideIcon name="play" /></span>
+      <span class="hook-player-stop" hidden><LucideIcon name="square" /></span>
+    </button>
+    <span class="hook-player-wave" aria-hidden="true" hidden>{Array.from({ length: 7 }, () => <i></i>)}</span>
+    </div>
+  </div>
+  <audio controls preload="metadata" aria-label={copy.audioTitle} src="/assets/MATTES_StBrown_TouchdownVersion.mp3">
+    <a href="/assets/MATTES_StBrown_TouchdownVersion.mp3">{copy.audioFallback}</a>
+  </audio>
+  <p class="hook-player-error" role="status" hidden>{copy.audioError}</p>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-hook-player]').forEach(player => {
+    const audio = player.querySelector('audio');
+    const button = player.querySelector<HTMLButtonElement>('button');
+    const playIcon = player.querySelector<HTMLElement>('.hook-player-play');
+    const stopIcon = player.querySelector<HTMLElement>('.hook-player-stop');
+    const wave = player.querySelector<HTMLElement>('.hook-player-wave');
+    const error = player.querySelector<HTMLElement>('.hook-player-error');
+    if (!audio || !button || !playIcon || !stopIcon || !wave || !error) return;
+    const sync = () => {
+      const playing = !audio.paused && !audio.ended;
+      button.setAttribute('aria-pressed', String(playing));
+      button.setAttribute('aria-label', (playing ? button.dataset.stopLabel : button.dataset.playLabel) ?? '');
+      playIcon.hidden = playing;
+      stopIcon.hidden = !playing;
+      wave.hidden = !playing;
+    };
+    const stop = () => {
+      audio.pause();
+      audio.currentTime = 0;
+      sync();
+    };
+    button.addEventListener('click', async () => {
+      error.hidden = true;
+      if (!audio.paused) { stop(); return; }
+      try { await audio.play(); } catch { error.hidden = false; sync(); }
+    });
+    audio.addEventListener('play', sync);
+    audio.addEventListener('pause', sync);
+    audio.addEventListener('ended', stop);
+    audio.addEventListener('error', () => { error.hidden = false; sync(); });
+    audio.controls = false;
+    player.dataset.enhanced = 'true';
+    button.hidden = false;
+  });
+</script>

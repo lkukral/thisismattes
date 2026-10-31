@@ -1,12 +1,13 @@
 export const locales = ["de", "en"] as const;
 
 export type Locale = (typeof locales)[number];
-export type PageKey = "home" | "release" | "legal";
+export type PageKey = "home" | "release" | "legal" | "campaign";
 
 const pagePaths = {
   home: "/",
   release: "/releases/st-brown/",
-  legal: "/impressum/"
+  legal: "/impressum/",
+  campaign: "/muenchen-singt/"
 } as const satisfies Record<PageKey, string>;
 
 export function localizedPath(locale: Locale, page: PageKey): string {

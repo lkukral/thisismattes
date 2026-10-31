@@ -1,0 +1,21 @@
+---
+import { whatsappGroupUrl } from "../config/campaign";
+import { campaignContent } from "../campaign-content";
+import type { Locale } from "../i18n";
+import LucideIcon from "./LucideIcon.astro";
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const copy = campaignContent[locale];
+---
+<div class="campaign-join">
+  {whatsappGroupUrl ? (
+    <a class="stb-button stb-button-primary campaign-cta" href={whatsappGroupUrl} target="_blank" rel="noreferrer">
+      {copy.cta} <LucideIcon name="arrow-up-right" />
+    </a>
+  ) : (
+    <div class="campaign-pending">
+      <span class="stb-button stb-button-primary campaign-cta" role="link" aria-disabled="true">{copy.cta} <LucideIcon name="arrow-up-right" /></span>
+      <span class="campaign-pending-label">{copy.pending}</span>
+    </div>
+  )}
+</div>
