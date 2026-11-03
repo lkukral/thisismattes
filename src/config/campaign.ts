@@ -1,3 +1,5 @@
+export const showCampaignOnHomepage = true;
+
 // All campaign CTAs become active automatically when this value is set.
 export const whatsappGroupUrl: string | null = "https://chat.whatsapp.com/CBpQbOd5u0SDzupfkgw5jp";
 

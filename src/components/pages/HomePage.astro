@@ -1,10 +1,14 @@
 ---
 import { getImage, Image } from "astro:assets";
 import mattesBackground from "../../assets/mattes_background.jpg";
+import campaignBackground from "../../assets/muenchen-singt-background.jpg";
+import campaignSticker from "../../assets/st-brown-campaign-sticker.jpg";
+import { showCampaignOnHomepage } from "../../config/campaign";
 import mattesLogo from "../../assets/mattes_logo_1500w.png";
 import stBrownArtwork from "../../assets/st-brown-artwork.webp";
 import zaertlicherApplausArtwork from "../../assets/artwork_zaertlicher_applaus.jpg";
 import { getContent, localizedPath, type Locale } from "../../i18n";
+import { campaignContent } from "../../campaign-content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import LanguageSwitch from "../LanguageSwitch.astro";
 import LucideIcon from "../LucideIcon.astro";
@@ -16,12 +20,13 @@ interface Props {
 const { locale } = Astro.props;
 const copy = getContent(locale);
 const { home } = copy;
-const optimizedHeroBackground = await getImage({ src: mattesBackground, width: 1920, format: "webp", quality: "high" });
+const optimizedHeroBackground = await getImage({ src: showCampaignOnHomepage ? campaignBackground : mattesBackground, width: 1920, format: "webp", quality: "high" });
 ---
 
 <BaseLayout title={home.meta.title} description={home.meta.description} locale={locale} page="home">
   <main id="main-content" class="mattes-site">
     <section class="hero" id="top" aria-label="Mattes" style={`--hero-background: url(${optimizedHeroBackground.src})`}>
+      {showCampaignOnHomepage && <div class="hero-campaign-blur" aria-hidden="true"></div>}
       <div class="hero-shade"></div>
       <header class="site-header">
         <a class="wordmark" href="#top" aria-label={home.hero.homeLabel}>MATTES</a>
@@ -32,7 +37,22 @@ const optimizedHeroBackground = await getImage({ src: mattesBackground, width: 1
           <LanguageSwitch locale={locale} page="home" />
         </div>
       </header>
-      <div class="hero-content"><Image class="hero-logo" src={mattesLogo} alt="Mattes" width={570} /></div>
+      <div class="hero-content">
+        {showCampaignOnHomepage ? (
+          <div class="hero-campaign-card">
+            <Image class="hero-campaign-sticker" src={campaignSticker} alt={campaignContent[locale].imageAlt} width={512} />
+            <a class="hero-campaign-banner" href={localizedPath(locale, "campaign")}>
+              <span>
+                <small>{campaignContent[locale].event}</small>
+                <strong>{campaignContent[locale].heading.join(" ")}</strong>
+              </span>
+              <LucideIcon name="arrow-up-right" />
+            </a>
+          </div>
+        ) : (
+          <Image class="hero-logo" src={mattesLogo} alt="Mattes" width={570} />
+        )}
+      </div>
       <a class="scroll-cue" href="#release-card" aria-label={home.hero.scrollLabel}><span>{home.hero.scroll}</span><LucideIcon name="arrow-down" /></a>
     </section>
 
@@ -62,3 +82,41 @@ const optimizedHeroBackground = await getImage({ src: mattesBackground, width: 1
     <footer class="site-footer"><a class="footer-logo" href="#top">MATTES</a><p>{home.footer.tagline}</p><div class="footer-actions"><div class="footer-links"><a href="mailto:hello@thisismattes.de">hello@thisismattes.de</a><a href={localizedPath(locale, "legal")}>{home.footer.legal}</a><a href="https://www.instagram.com/thisismattes" target="_blank" rel="noreferrer">Instagram</a><a href="https://www.tiktok.com/@thisismattes" target="_blank" rel="noreferrer">TikTok</a></div><LanguageSwitch locale={locale} page="home" /></div><span class="copyright">© 2026 Mattes</span></footer>
   </main>
 </BaseLayout>
+
+<style>
+  .hero-campaign-blur {
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(64px);
+    pointer-events: none;
+  }
+
+  .hero-campaign-card {
+    width: 100%;
+    max-width: 400px;
+    margin-inline: auto;
+  }
+
+  .hero-campaign-sticker {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .hero-campaign-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--stb-yellow, #ffd740);
+    color: #101010;
+    text-align: left;
+  }
+
+  .hero-campaign-banner:hover { background: #ffe784; }
+  .hero-campaign-banner small, .hero-campaign-banner strong { display: block; }
+  .hero-campaign-banner small { margin-bottom: .25rem; }
+  .hero-campaign-banner strong { line-height: 1.25; }
+  .hero-campaign-banner svg { flex-shrink: 0; }
+</style>
