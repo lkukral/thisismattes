@@ -51,8 +51,6 @@ Der lokale Player lädt die MP3 aus `public/assets/` ohne Autoplay.
 Die Komponente `HookPlayer.astro` bietet Play/Stopp mit Wellenanimation,
 ohne Zeitanzeige oder Fortschrittsleiste. Stopp und das natürliche Ende setzen
 die Wiedergabe an den Anfang zurück. Ohne JavaScript bleiben native Controls verfügbar.
-Die beiden 9:16-Videoplatzhalter werden über `CampaignVideoPlaceholder.astro`
-angezeigt; ihre Beschriftungen liegen in den Kampagnentexten.
 Das Stadionbild in `src/assets/` wird beim Build als WebP optimiert; der Sticker
 in `public/assets/` dient als Vorschau beim Teilen der Seite.
 

@@ -1,6 +1,5 @@
-// Insert the WhatsApp invitation URL here once it is available.
 // All campaign CTAs become active automatically when this value is set.
-export const whatsappGroupUrl: string | null = null;
+export const whatsappGroupUrl: string | null = "https://chat.whatsapp.com/CBpQbOd5u0SDzupfkgw5jp";
 
 export const touchdownDownloadUrl = "https://drive.google.com/file/d/1QgpAXzK7x7LV_3qJJaNqZ-Phd1FOTChK/view?usp=drive_link";
 export const songStreamingUrl = "https://listen.music-hub.com/EfEaxn";

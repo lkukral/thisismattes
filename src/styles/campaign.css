@@ -42,25 +42,16 @@
 .campaign-section { padding: clamp(4.5rem, 8vw, 8rem) max(1.5rem, calc((100vw - 1240px) / 2)); }
 .campaign-section h2 { font-size: clamp(3rem, 5.5vw, 6rem); line-height: .98; }
 .campaign-section h2 em { color: var(--stb-blue); font-style: normal; }
-.campaign-participate-grid, .campaign-download-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: clamp(2.5rem, 7vw, 7rem); align-items: center; }
-.campaign-participate-copy > p, .campaign-download-grid > div > p { margin: 0 0 1.7rem; max-width: 530px; font-size: clamp(1rem, 1.3vw, 1.13rem); line-height: 1.7; }
+.campaign-participate-copy > p, .campaign-download-copy > p { margin: 0 0 1.7rem; max-width: 530px; font-size: clamp(1rem, 1.3vw, 1.13rem); line-height: 1.7; }
 .campaign-participate-copy .campaign-pending-note { margin: 1rem 0 0; font-size: .85rem; line-height: 1.6; color: #516465; }
-.campaign-participate-grid { align-items: start; }
 .campaign-participate-copy > h2 { margin: 0 0 1.5rem; }
 .campaign-whatsapp-logo { display: block; width: 64px; height: auto; margin-bottom: 1.5rem; }
-.campaign-video-placeholder { width: min(100% - 10px, 360px); margin: 0; justify-self: center; }
-.campaign-video-frame { display: flex; aspect-ratio: 9 / 16; padding: 1.25rem; flex-direction: column; justify-content: space-between; border: 1px solid #9baeb0; background: var(--stb-ink); color: #fff; box-shadow: 10px 10px 0 var(--stb-petrol); }
-.campaign-video-frame > span { align-self: flex-end; color: #afc5c6; font-size: .65rem; letter-spacing: .1em; }
-.campaign-video-frame > p { margin: 0; font-family: Anton, Impact, sans-serif; font-size: clamp(1.7rem, 3vw, 2.4rem); line-height: 1.1; text-transform: uppercase; }
-.campaign-video-placeholder figcaption { margin-top: 1.5rem; font-size: .85rem; line-height: 1.6; color: #516465; }
 .campaign-download { position: relative; isolation: isolate; overflow: hidden; background: var(--stb-ink); color: #fff; }
 .campaign-download::before { position: absolute; z-index: -1; width: min(50vw, 650px); aspect-ratio: 1; right: -15%; top: -55%; border: clamp(25px, 5vw, 60px) solid var(--stb-petrol); border-radius: 50%; content: ''; opacity: .65; }
-.campaign-download-grid h2 { margin-bottom: 1.7rem; }
-.campaign-download-grid > div > p { color: #e0eeee; }
-.campaign-download .campaign-video-placeholder figcaption { color: #afc5c6; }
-.campaign-download .campaign-video-frame { background: var(--stb-petrol); box-shadow: 10px 10px 0 #123b40; }
+.campaign-download-copy h2 { margin-bottom: 1.7rem; }
+.campaign-download-copy > p { color: #e0eeee; }
 .campaign-download-button { gap: 1rem; max-width: 460px; }
-.campaign-download-grid > div > .campaign-download-hint { margin: .8rem 0 0; font-size: .73rem; color: #afc5c6; }
+.campaign-download-copy > .campaign-download-hint { margin: .8rem 0 0; font-size: .73rem; color: #afc5c6; }
 .campaign-story { padding-block: clamp(4.5rem, 8vw, 8rem); }
 .campaign-story h2 { font-size: clamp(3.3rem, 6vw, 6.5rem); }
 .campaign-song-grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1fr); gap: clamp(3rem, 8vw, 8rem); align-items: center; }
@@ -92,9 +83,8 @@
   .campaign-eyebrow { font-size: .59rem; gap: .35rem; margin-bottom: 1.2rem; }
   .campaign-intro { margin: 1.25rem auto; font-size: .96rem; }
   .campaign-cta { font-size: .7rem; letter-spacing: .045em; }
-  .campaign-participate-grid, .campaign-download-grid, .campaign-song-grid { grid-template-columns: 1fr; }
+  .campaign-song-grid { grid-template-columns: 1fr; }
   .campaign-song-cover { width: calc(100% - 14px); }
-  .campaign-video-placeholder { width: min(100% - 10px, 330px); }
   .campaign-footer { flex-wrap: wrap; gap: 1.5rem; }
   .campaign-footer-links { justify-content: flex-start; }
 }

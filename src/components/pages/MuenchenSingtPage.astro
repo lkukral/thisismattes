@@ -6,7 +6,6 @@ import stadium from "../../assets/muenchen-singt-background.jpg";
 import whatsappLogo from "../../assets/whatsapp-logo.webp";
 import stBrownArtwork from "../../assets/st-brown-artwork.webp";
 import HookPlayer from "../HookPlayer.astro";
-import CampaignVideoPlaceholder from "../CampaignVideoPlaceholder.astro";
 import mattesProfile from "../../assets/mattes_profile.jpg";
 import { getContent, localizedPath, type Locale } from "../../i18n";
 import { campaignContent } from "../../campaign-content";
@@ -42,23 +41,18 @@ const backdrop = await getImage({ src: stadium, width: 2000, format: "webp" });
 
     <section class="campaign-section campaign-participate" id="mitmachen" aria-labelledby="join-heading">
       <div class="stb-section-label"><span>01</span>{copy.joinLabel}</div>
-      <div class="campaign-participate-grid">
-        <div class="campaign-participate-copy">
-          <h2 id="join-heading">{copy.joinHeading[0]}<br /><em>{copy.joinHeading[1]}</em><br />{copy.joinHeading[2]}</h2>
-          <Image class="campaign-whatsapp-logo" src={whatsappLogo} alt="WhatsApp" width={64} />
-          <p>{copy.joinText}</p><CampaignJoin locale={locale} />
-          {!whatsappGroupUrl && <p class="campaign-pending-note">{copy.pendingNote}</p>}
-        </div>
-        <CampaignVideoPlaceholder title={copy.explainVideoTitle} description={copy.explainVideoText} />
+      <div class="campaign-participate-copy">
+        <h2 id="join-heading">{copy.joinHeading[0]}<br /><em>{copy.joinHeading[1]}</em><br />{copy.joinHeading[2]}</h2>
+        <Image class="campaign-whatsapp-logo" src={whatsappLogo} alt="WhatsApp" width={64} />
+        <p>{copy.joinText}</p><CampaignJoin locale={locale} />
+        {!whatsappGroupUrl && <p class="campaign-pending-note">{copy.pendingNote}</p>}
       </div>
-
     </section>
 
     <section class="campaign-section campaign-download" aria-labelledby="download-heading">
       <div class="stb-section-label stb-section-label-light"><span>02</span>{copy.downloadLabel}</div>
-      <div class="campaign-download-grid">
-        <div><h2 id="download-heading">{copy.downloadHeading[0]}<br /><em>{copy.downloadHeading[1]}</em></h2><p>{copy.downloadText}</p><a class="stb-button stb-button-secondary campaign-download-button" href={touchdownDownloadUrl} target="_blank" rel="noreferrer">{copy.download} <LucideIcon name="arrow-down" /></a><p class="campaign-download-hint">{copy.downloadHint}</p></div>
-        <CampaignVideoPlaceholder title={copy.performanceVideoTitle} description={copy.performanceVideoText} />
+      <div class="campaign-download-copy">
+        <h2 id="download-heading">{copy.downloadHeading[0]}<br /><em>{copy.downloadHeading[1]}</em></h2><p>{copy.downloadText}</p><a class="stb-button stb-button-secondary campaign-download-button" href={touchdownDownloadUrl} target="_blank" rel="noreferrer">{copy.download} <LucideIcon name="arrow-down" /></a><p class="campaign-download-hint">{copy.downloadHint}</p>
       </div>
 
     </section>
