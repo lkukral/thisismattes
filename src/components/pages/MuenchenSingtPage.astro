@@ -56,8 +56,18 @@ const backdrop = await getImage({ src: stadium, width: 2000, format: "webp" });
 
     <section class="campaign-section campaign-download" aria-labelledby="download-heading">
       <div class="stb-section-label stb-section-label-light"><span>02</span>{copy.downloadLabel}</div>
-      <div class="campaign-download-copy">
-        <h2 id="download-heading">{copy.downloadHeading[0]}<br /><em>{copy.downloadHeading[1]}</em></h2><p>{copy.downloadText}</p><a class="stb-button stb-button-secondary campaign-download-button" href={touchdownDownloadUrl} target="_blank" rel="noreferrer">{copy.download} <LucideIcon name="arrow-down" /></a><p class="campaign-download-hint">{copy.downloadHint}</p>
+      <div class="campaign-download-grid">
+        <div class="campaign-download-copy">
+          <h2 id="download-heading">{copy.downloadHeading[0]}<br /><em>{copy.downloadHeading[1]}</em></h2>
+          <p>{copy.downloadText}</p>
+          <a class="stb-button stb-button-secondary campaign-download-button" href={touchdownDownloadUrl} target="_blank" rel="noreferrer">
+            {copy.download} <LucideIcon name="arrow-down" />
+          </a>
+          <p class="campaign-download-hint">{copy.downloadHint}</p>
+        </div>
+        <video class="campaign-participate-video" controls playsinline preload="metadata" aria-labelledby="download-heading">
+          <source src="/assets/mattes-singalong.mp4" type="video/mp4" />
+        </video>
       </div>
 
     </section>

@@ -42,7 +42,7 @@
 .campaign-section { padding: clamp(4.5rem, 8vw, 8rem) max(1.5rem, calc((100vw - 1240px) / 2)); }
 .campaign-section h2 { font-size: clamp(3rem, 5.5vw, 6rem); line-height: .98; }
 .campaign-section h2 em { color: var(--stb-blue); font-style: normal; }
-.campaign-participate-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: clamp(2.5rem, 7vw, 7rem); align-items: start; }
+.campaign-participate-grid, .campaign-download-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: clamp(2.5rem, 7vw, 7rem); align-items: start; }
 .campaign-participate-video { display: block; width: min(100%, 360px); height: auto; justify-self: center; background: var(--stb-ink); }
 .campaign-participate-copy > p, .campaign-download-copy > p { margin: 0 0 1.7rem; max-width: 530px; font-size: clamp(1rem, 1.3vw, 1.13rem); line-height: 1.7; }
 .campaign-participate-copy .campaign-pending-note { margin: 1rem 0 0; font-size: .85rem; line-height: 1.6; color: #516465; }
@@ -85,7 +85,7 @@
   .campaign-eyebrow { font-size: .59rem; gap: .35rem; margin-bottom: 1.2rem; }
   .campaign-intro { margin: 1.25rem auto; font-size: .96rem; }
   .campaign-cta { font-size: .7rem; letter-spacing: .045em; }
-  .campaign-participate-grid, .campaign-song-grid { grid-template-columns: 1fr; }
+  .campaign-participate-grid, .campaign-download-grid, .campaign-song-grid { grid-template-columns: 1fr; }
   .campaign-song-cover { width: calc(100% - 14px); }
   .campaign-footer { flex-wrap: wrap; gap: 1.5rem; }
   .campaign-footer-links { justify-content: flex-start; }
